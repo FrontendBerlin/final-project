@@ -1,3 +1,461 @@
 body {
-    background-color: ghostwhite;
+    background: linear-gradient(-135deg, purple, orange, grey, green);
+    background-size: 4000% 4000%;
+    animation: gradient 10s ease infinite;
+    height: 100vh;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.backgroundPic {
+    height: 500px;
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px yellow, -3px 3px 30px orange;
+    border-radius: 50px;
+    animation: circle 3s ease infinite;
+}
+
+#registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-30px);
+}
+
+#welcome > h1 {
+    transform: translateX(-35px);
+}
+
+#registration input {
+    display: flex;
+    width: 50%;
+    margin-bottom: 5px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+#registration input :focus {
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+    background-color: #1beabd;
+}
+
+.registrationH1 {
+    margin-left: 8%;
+}
+
+.registrationP {
+    transform: translateX(70px);
+}
+
+#welcome {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#welcome h1 {
+    text-shadow: 0 0 15px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px blue,
+        0 0 20px blue, 0 0 20px blue, 0 0 25px yellow, 0 0 30px yellow;
+    color: white;
+}
+.welcomeImg {
+    width: 80%;
+    object-fit: cover;
+    transform: translateX(5%);
+    border-radius: 50px;
+}
+/* .LoogedInForm {
+    margin-top: 40px;
+    margin-bottom: 30px;
+} */
+/* 、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、 */
+.LoogedInForm {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    /* transform: translate(-50%);
+    left: 50%; */
+    margin-top: 10px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px yellow,
+        0 0 20px yellow, 0 0 20px yellow, 0 0 25px yellow, 0 0 30px yellow;
+}
+
+.LoogedInForm:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.LoogedInForm:active {
+    color: #000;
+}
+
+.LoogedInForm:active:after {
+    background: transparent;
+}
+
+.LoogedInForm:hover:before {
+    opacity: 1;
+}
+
+.LoogedInForm:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.bioText {
+    width: 1000px;
+    height: 250px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    /* transform: translate(-50%);
+    left: 50%; */
+    margin-top: 10px;
+    font-family: Brush Script MT;
+    font-size: 30px;
+}
+
+.bioText:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.bioText:active {
+    color: #000;
+}
+
+.bioText:active:after {
+    background: transparent;
+}
+
+.bioText:hover:before {
+    opacity: 1;
+}
+
+.bioText:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* 、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、 */
+
+/* .LoogedInForm :hover {
+    color: red;
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
+    border: 5px solid pink;
+    border-radius: 30px;
+} */
+/* .appDiv {
+    display: flex;
+} */
+.appProfileDiv {
+    position: absolute;
+}
+
+.appProfileDiv img {
+    transform: translate(300px, 20px);
+}
+
+.appDiv img {
+    height: 200px;
+    width: 200px;
+    object-fit: fill;
+}
+
+.profilePicDiv img {
+    height: 30px;
+}
+.uploaderDiv {
+    background-color: orchid;
+    display: block;
+    margin-bottom: 20px;
+    width: 30%;
+    /* background-color: yellow; */
+    /* left: 30%; */
+    height: 200px;
+    height: 100px;
+    box-shadow: 0 0 0 5px white, 3px -3px 30px pink, -3px 3px 30px purple;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
+        0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+
+    color: #ffffff;
+    width: 500px;
+    float: left;
+    transform: translate(0px, 10px);
+}
+
+.uploaderX {
+    position: absolute;
+    left: 95%;
+    color: white;
+}
+
+.uploaderDivP {
+    position: absolute;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    left: 2%;
+}
+
+.uploaderDiv form {
+    position: absolute;
+    top: 35%;
+    left: 2%;
+}
+.uploaderDiv form input {
+    margin-bottom: 5px;
+}
+
+.profilePicImg {
+    position: absolute;
+    height: 20%;
+    /* margin-left: 100%; */
+}
+.profileDiv {
+    margin-top: 20%;
+}
+.profileDiv img {
+    height: 500px;
+    margin-left: 0%;
+    width: 500px;
+    object-fit: fill;
+    /* transform: translate(250px, -350px); */
+}
+/* .bioText {
+    transform: translateY(75px);
+    border-radius: 20px;
+    box-shadow: 0 0 0 5px yellow, 3px -3px 30px white, -3px 3px 30px aqua;
+    height: 300px;
+    width: 900px;
+    color: blue;
+    background-color: aqua;
+    font-size: 40px;
+    font-family: Brush Script MT;
+} */
+.bioEditorDiv {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin-left: 50%;
+    transform: translate(600px, -490px);
+}
+.bioEditorDiv button {
+    height: 30px;
+    margin-bottom: 20px;
+    display: block;
+    border: 3px solid white;
+}
+.bioEditorDiv button:hover {
+    color: red;
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
+    border: 5px solid pink;
+    border-radius: 30px;
+}
+.findPeopleDiv {
+    position: absolute;
+    margin-left: 40%;
+}
+.findPeopleDiv input {
+    border-radius: 20px;
+    width: 300px;
+    height: 30px;
+    transform: translateX(40px);
+    background: linear-gradient(-135deg, aqua, yellow, white);
+    background-size: 4000% 4000%;
+    animation: gradient 10s ease infinite;
+}
+.findPeopleDiv input:focus {
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px white, -3px 3px 30px white;
+}
+.findPeopleDiv button {
+    display: block;
+    margin-top: 10px;
+    transform: translateX(40px);
+    border: 3px solid white;
+}
+.findPeopleDiv button:hover {
+    color: red;
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
+    border: 5px solid pink;
+    border-radius: 30px;
+}
+.findPeopleLiP:hover {
+    color: white;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px yellow,
+        0 0 20px yellow, 0 0 20px yellow, 0 0 25px yellow, 0 0 30px yellow;
+}
+.findPeopleImg {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.findPeopleImg:hover {
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
+}
+.OtherProfileImg {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.otherPeopleDiv {
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    /* transform: translateX(-50%); */
+}
+.otherPeopleDiv div {
+    transform: translate(600px, -500px);
+}
+.otherPeopleDiv button {
+    transform: translate(600px, -500px);
+}
+.otherPeopleDiv img {
+    height: 500px;
+    margin-left: 0%;
+    width: 500px;
+    object-fit: fill;
+}
+.otherPeopleDivDiv {
+    box-shadow: 0 0 0 5px orange, 3px -3px 30px yellow, -3px 3px 30px white;
+    height: 400px;
+    width: 900px;
+    color: yellow;
+    background-color: orangered;
+    font-size: 40px;
+    font-family: Brush Script MT;
+    border-radius: 20px;
+    padding: 5px;
+}
+.otherPeopleDivName {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px yellow,
+        0 0 20px yellow, 0 0 20px yellow, 0 0 25px yellow, 0 0 30px yellow;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#friendButtonDiv {
+    transform: translate(0px, 50px);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------->Hobbies */
+.hobbiesDiv {
+    width: 30%;
+    height: 200px;
+    transform: translate(850px, 400px);
 }
