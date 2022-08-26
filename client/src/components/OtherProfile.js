@@ -27,7 +27,7 @@ export default function OtherProfile() {
                 className="OtherProfileImg"
                 src={
                     users.imageUrl ||
-                    "https://images.unsplash.com/photo-1446853663655-381f4a1ce3fd?ixlib=rb-1.2.1&dl=scott-webb-agn2nRboqLI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                    "https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?ixlib=rb-1.2.1&dl=sergey-pesterev-P0nWpyphwks-unsplash.jpg&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
                 }
                 alt="hi"
             />

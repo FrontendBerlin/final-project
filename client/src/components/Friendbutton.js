@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { useParams } from "react-router";
 
 export default function Friendbutton(props) {
@@ -112,9 +112,18 @@ export default function Friendbutton(props) {
                         cancelFriendship(e);
                     }}
                 >
-                    cancel the idea
+                    cancel the friendship
                 </button>
             )}
+            {friendship.accepted && (
+                <Link to={"/friendsAlbum/" + userId}>
+                    <button> Visit the Album of this Friend.</button>
+                </Link>
+            )}
+
+            {/* <Link to={"/friendsAlbum/" + userId}>
+                <button>Visiit the Album of this Friend</button>
+            </Link> */}
             {friendship.id &&
                 !friendship.accepted &&
                 friendship.recipient_id == userId && (
@@ -123,7 +132,7 @@ export default function Friendbutton(props) {
                             cancelFriendship(e);
                         }}
                     >
-                        dont think its a good idea
+                        cancel the request
                     </button>
                 )}
             {friendship.id &&
@@ -134,7 +143,7 @@ export default function Friendbutton(props) {
                             acceptFriendship(e);
                         }}
                     >
-                        accept the idea
+                        accept the request
                     </button>
                 )}
             {!friendship.id && (
@@ -143,7 +152,7 @@ export default function Friendbutton(props) {
                         requestFriendship(e);
                     }}
                 >
-                    Lets combine our Flavor
+                    request for friendship
                 </button>
             )}
         </div>

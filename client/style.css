@@ -156,8 +156,8 @@ canvas {
 }
 
 .bioText {
-    width: 1000px;
-    height: 250px;
+    width: 900px;
+    height: 300px;
     border: none;
     outline: none;
     color: #fff;
@@ -453,9 +453,25 @@ canvas {
     }
 }
 
-/* ----------------------------------------------------------------------------------------------------------------------------------->Hobbies */
-.hobbiesDiv {
-    width: 30%;
-    height: 200px;
-    transform: translate(850px, 400px);
+/* ----------------------------------------------------------------------------------------------------------------------------------->hobby */
+.hobbyFieldset {
+    transform: translate(900px, -490px);
+}
+.hobbyButton {
+    transform: translate(900px, -450px);
+}
+#selectFromHobbiesUl {
+    display: flex;
+    transform: translate(-40px, 10px);
+}
+#selectFromHobbiesUl li::marker {
+    content: "";
+}
+.albumUl {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.clicked {
+    opacity: 0.5;
 }

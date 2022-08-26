@@ -7,7 +7,10 @@ import { BrowserRouter, Route } from "react-router-dom";
 import FindPeople from "./FindPeople";
 import { Link } from "react-router-dom";
 import OtherProfile from "./OtherProfile";
-// import Hobbies from "./Hobbies";
+import Hobby from "./Hobby";
+import Album from "./Album";
+import FriendsAlbum from "./FriendsAlbum";
+import MyFriends from "./MyFriends";
 
 export default class App extends Component {
     constructor(props) {
@@ -79,12 +82,12 @@ export default class App extends Component {
                     id: result.userId,
                     profilePicUrl: result.imageUrl,
                 });
-                console.log(
-                    ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>the state after component mounted is",
-                    this.state.first,
-                    this.state.last,
-                    this.state.profilePicUrl
-                );
+                // console.log(
+                //     ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>the state after component mounted is",
+                //     this.state.first,
+                //     this.state.last,
+                //     this.state.profilePicUrl
+                // );
             });
     }
 
@@ -107,6 +110,9 @@ export default class App extends Component {
                                     isPopupOpen={this.state.isPopupOpen}
                                     turnToUploader={this.turnToUploader}
                                 />
+                            </Link>
+                            <Link to="/myFriends">
+                                <button>My Friends</button>
                             </Link>
                         </Route>
 
@@ -140,16 +146,18 @@ export default class App extends Component {
                         <Route path="/user/:userId">
                             <OtherProfile />
                         </Route>
-                        {/* <Route path="/hobbies">
-                            <Hobbies
-                                first={this.state.first}
-                                last={this.state.last}
-                                profilePicUrl={this.state.profilePicUrl}
-                                uploaderIsVisible={this.state.uploaderIsVisible}
-                                isPopupOpen={this.state.isPopupOpen}
-                                turnToUploader={this.turnToUploader}
-                            />
-                        </Route> */}
+                        <Route path="/hobby">
+                            <Hobby />
+                        </Route>
+                        <Route path="/album">
+                            <Album />
+                        </Route>
+                        <Route path="/friendsAlbum/:userId">
+                            <FriendsAlbum />
+                        </Route>
+                        <Route path="/myFriends">
+                            <MyFriends />
+                        </Route>
                     </div>
                 </BrowserRouter>
             </div>

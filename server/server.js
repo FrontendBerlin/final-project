@@ -103,13 +103,10 @@ app.post(
     uploader.single("photo"),
     s3.upload,
     function (req, res) {
-        console.log(
-            "/upload is reached",
-            req.file,
-            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-        );
+        console.log("/upload is reached");
         const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
-
+        console.log(">>>>>>>>>>>>>url", url);
+        console.log(">>>>>>>>>>>>>userId", req.session.userId);
         if (req.file) {
             db.uploadImages(url, req.session.userId).then((result) => {
                 console.log("_______________________________", result);
@@ -189,10 +186,10 @@ app.get("/findPeople.json", function (req, res) {
     console.log(req.query);
     console.log("/findPeople is reached");
     db.getTop3(req.query).then((result) => {
-        console.log(
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> result.rows of getTop3 is:",
-            [...result.rows]
-        );
+        // console.log(
+        //     ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> result.rows of getTop3 is:",
+        //     [...result.rows]
+        // );
 
         res.json({
             response: result.rows,
@@ -202,12 +199,12 @@ app.get("/findPeople.json", function (req, res) {
 
 app.get("/findPeople.json/:search", function (req, res) {
     console.log(req.params.search);
-    console.log("/findPeople is reached");
+    // console.log("/findPeople is reached");
     db.getSearch3(req.params.search).then((result) => {
-        console.log(
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> result.rows of getTop3 is:",
-            [...result.rows]
-        );
+        // console.log(
+        //     ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> result.rows of getTop3 is:",
+        //     [...result.rows]
+        // );
 
         res.json({
             response: result.rows,
@@ -224,10 +221,10 @@ app.get("/api/user/:userId", function (req, res) {
     db.getUserInfo(req.params.userId)
         .then((result) => {
             if (result.rowCount > 0) {
-                // console.log(
-                //     "=================================================>result result result",
-                //     result
-                // );
+                console.log(
+                    "=================================================>result result result",
+                    result
+                );
                 res.json({
                     imageUrl: result.rows[0].imageurl,
                     userId: result.rows[0].id,
@@ -319,6 +316,185 @@ app.post("/acceptFriendship.json/:userId", function (req, res) {
             });
         }
     );
+});
+
+// --------------------------------------------------------------------------------------------------------------post hobby.json
+app.post("/hobby.json", (req, res) => {
+    console.log(
+        "öööööööööööööööööööööööööööööööööööööööööö",
+        req.body,
+        req.session
+    );
+    const { hobbies } = req.body;
+    const hobbiesJson = JSON.stringify(hobbies);
+    console.log(
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hobbies, hobbiesJson",
+        hobbies,
+        hobbiesJson
+    );
+
+    db.updateHobby(hobbiesJson, req.session.userId).then((result) => {
+        console.log(
+            "_______________________________result from updateHobby",
+            result
+        );
+        res.json({
+            hobbies: JSON.parse(result.rows[0].hobbies),
+        });
+    });
+});
+// --------------------------------------------------------------------------------------------------------------post hobby2.json
+// app.post("/hobby2.json", (req, res) => {
+//     console.log(
+//         "äääääääääääääääääääääääääääääääääääääääääääääää",
+//         req.body,
+//         req.session
+//     );
+//     const { hobbies } = req.body;
+//     // const hobbiesJson = JSON.stringify(hobbies);
+//     // console.log(
+//     //     ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hobbies, hobbiesJson",
+//     //     hobbies,
+//     //     hobbiesJson
+//     // );
+//     for (const i in hobbies) {
+//         db.insertHobby(req.session.userId, hobbies[i]);
+//     }
+
+// db.updateHobby(hobbiesJson, req.session.userId).then((result) => {
+//     console.log(
+//         "_______________________________result from updateHobby",
+//         result
+//     );
+//     res.json({
+//         hobbies: JSON.parse(result.rows[0].hobbies),
+//     });
+// });
+// });
+// --------------------------------------------------------------------------------------------------------------get selectfromhobbies.json
+app.get("/selectfromhobbies.json", (req, res) => {
+    db.selectHobbies().then((result) => {
+        const hobbiesList = Object.values(result.fields)
+            .slice(1)
+            .map((Field) => {
+                console.log(">>>>>>>>>>>>>>>>>>>>F.N", Field.name);
+                return Field.name;
+            });
+        console.log("hobbiesList is:", hobbiesList);
+        res.json({ hobbiesList: hobbiesList });
+    });
+});
+// if (req.file) {
+//     db.uploadImages(url, req.session.userId).then((result) => {
+//         console.log("_______________________________", result);
+//         res.json({ url: result.rows[0].imageurl });
+//     });
+// } else {
+//     res.json({
+//         success: false,
+//         status: "Please try again",
+//     });
+// }
+// --------------------------------------------------------------------------------------------------------------post selectfromhobbies.json
+app.post("/selectPeople.json", (req, res) => {
+    console.log("-------------->req.body from selectPeople", req.body);
+
+    if (req.body.selectedPeopleId == false) {
+        db.findUsersWithHobby(req.body.search).then((result) => {
+            console.log(
+                "----------------------------------------->result after findUserWithHobby:",
+                result.rows
+            );
+            res.json({
+                response: result.rows,
+            });
+        });
+    } else {
+        db.findUsersWithHobbyWithId(
+            req.body.search,
+            req.body.selectedPeopleId
+        ).then((result) => {
+            console.log(
+                "----------------------------------------->result after findUserWithHobbyWithId:",
+                result
+            );
+            res.json({
+                response: result.rows,
+            });
+        });
+    }
+});
+// --------------------------------------------------------------------------------------------------------------post album.json
+app.post(
+    "/album.json",
+    uploader.single("photo"),
+    s3.upload,
+    function (req, res) {
+        console.log("/upload of album is reached");
+        const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
+        console.log(">>>>>>>>>>>>>url of album", url);
+        console.log(">>>>>>>>>>>>>userId of album", req.session.userId);
+        if (req.file) {
+            db.insertImage(url, req.session.userId).then((result) => {
+                console.log(
+                    "..................................result of insertImage:",
+                    result
+                );
+                res.json({
+                    url: result.rows[0].url,
+                });
+            });
+        } else {
+            res.json({
+                success: false,
+                status: "Please try again",
+            });
+        }
+    }
+);
+// --------------------------------------------------------------------------------------------------------------get albumEffect.json
+app.get("/albumEffect.json", (req, res) => {
+    console.log("💚💚💚");
+    db.getAlbum(req.session.userId).then((result) => {
+        console.log(">>>>>>>>>>>>>>>>>result from albumEffect is:", result);
+        res.json({
+            url: result.rows,
+        });
+    });
+});
+
+// --------------------------------------------------------------------------------------------------------------get albumEffect/:userId
+app.get("/albumEffect/:userId", (req, res) => {
+    console.log("💚💚💚");
+    db.getAlbum(req.params.userId).then((result) => {
+        console.log(">>>>>>>>>>>>>>>>>result from albumEffect is:", result);
+        res.json({
+            url: result.rows,
+        });
+    });
+});
+
+// --------------------------------------------------------------------------------------------------------------get myFriends.json
+app.get("/myFriends.json", (req, res) => {
+    db.myFriends(req.session.userId).then((result) => {
+        console.log(">>>>>>>>>>>>>>>>>result from myFriends is:", result.rows);
+        res.json({
+            myFriends: result.rows,
+        });
+    });
+});
+
+// --------------------------------------------------------------------------------------------------------------post myFriendsInfo.json
+app.post("/myFriendsInfo.json", (req, res) => {
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
+    const friendsId = req.body.map((friend) => friend.recipient_id);
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", friendsId);
+    db.getMyFriends(friendsId).then((result) => {
+        console.log(".............................", result.rows);
+        res.json({
+            myFriendsInfo: result.rows,
+        });
+    });
 });
 
 // --------------------------------------------------------------------------------------------------------------

@@ -134,21 +134,21 @@ export default class BioEditor extends Component {
                         handleUploader={this.handleUploader}
                     />
                 </Route>
-                <Link to="/">
-                    <button>Finished description</button>
+                <Link to="/album">
+                    <button>Go to your Album</button>
                 </Link>
-                <Link to="/users">
-                    <button> Combine with other Tastes</button>
-                </Link>{" "}
-                <Link to="/hobbies">
-                    <button> Your Hobbies 🏃‍♂️</button>
-                </Link>{" "}
+                <Link to="/">
+                    <button>Finished Description</button>
+                </Link>
+                <button>
+                    {" "}
+                    <Link to="/users">Find Friends</Link>{" "}
+                </button>
+                <Link to="/hobby">
+                    <button>Choose your Hobby</button>
+                </Link>
                 <div className="bioText">{this.state.bio}</div>
             </div>
         );
     }
-}
-
-export function BioEditorText() {
-    return <div className="bioText">{this.state.bio}</div>;
 }

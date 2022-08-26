@@ -135,3 +135,83 @@ module.exports.acceptFriendshipDb = (user1, user2) => {
 // sender_id INT REFERENCES users(id) NOT NULL,
 // recipient_id INT REFERENCES users(id) NOT NULL,
 // accepted BOOLEAN DEFAULT false
+// _____________________________________________________________________________________________________________________________________Hobby
+
+module.exports.updateHobby = (hobbies, id) => {
+    return db.query(
+        `UPDATE users SET hobbies = $1 WHERE id = $2 RETURNING id,hobbies;`,
+        [hobbies, id]
+    );
+};
+
+// _____________________________________________________________________________________________________________________________________SelectFromHobby
+module.exports.selectHobbies = () => {
+    return db.query(`SELECT * FROM hobbies;`);
+};
+// _____________________________________________________________________________________________________________________________________InsertHobby
+module.exports.insertHobby = (userId, hobby) => {
+    console.log("...........", hobby);
+    return db.query(
+        `INSERT INTO hobby (userId,hobby) VALUES ($1,$2) RETURNING *;`,
+        [userId, hobby]
+    );
+};
+
+// return db.query(
+//     `INSERT INTO images
+//         (url, username, title, description)
+//         VALUES ($1, $2, $3, $4)
+//         RETURNING *;`,
+//     [url, username, title, description]
+//   );
+// };
+module.exports.findUsersWithHobby = (hobby) => {
+    const query = `SELECT id,first,last,imageurl,bio FROM users WHERE hobbies ILIKE $1 ORDER BY id DESC LIMIT 3; `;
+    return db.query(query, [`%${hobby}%`]);
+};
+module.exports.findUsersWithHobbyWithId = (hobby, selectedPeopleId) => {
+    const query = `SELECT id,first,last,imageurl,bio FROM users WHERE hobbies ILIKE $1 AND id = ANY($2) ORDER BY id DESC LIMIT 3; `;
+    return db.query(query, [`%${hobby}%`, selectedPeopleId]);
+};
+
+module.exports.insertImage = (url, userId) => {
+    return db.query(
+        `INSERT INTO images
+            (url, userId)
+            VALUES ($1, $2)
+            RETURNING url;`,
+        [url, userId]
+    );
+};
+
+module.exports.getAlbum = (userId) => {
+    return db.query(
+        `SELECT url FROM images WHERE userId = $1 ORDER BY id DESC LIMIT 5;`,
+        [userId]
+    );
+};
+// return db.query(
+//     `SELECT id,first,last,imageurl,bio FROM users WHERE first ILIKE $1 ORDER BY id DESC LIMIT 3 ;`,
+//     [search + "%"]
+// );
+
+module.exports.myFriends = (userId) => {
+    const query = `(
+        SELECT recipient_id FROM friendships
+        WHERE accepted = true AND sender_id = $1) UNION ALL (
+        SELECT sender_id FROM friendships
+        WHERE accepted = true AND recipient_id = $1)
+        `;
+    return db.query(query, [userId]);
+};
+
+// module.exports.myFriendsFromRecipient = (userId) => {
+//     const query = `
+//         SELECT sender_id FROM friendships
+//         WHERE accepted = true AND recipient_id = $1`;
+//     return db.query(query, [userId]);
+// };
+module.exports.getMyFriends = (friendsId) => {
+    const query = `SELECT id,first,last,imageurl,bio FROM users WHERE id = ANY($1)`;
+    return db.query(query, [friendsId]);
+};

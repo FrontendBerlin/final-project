@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS friendships;
+DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
      id serial PRIMARY KEY,
@@ -10,11 +12,19 @@ CREATE TABLE users (
      hobbies TEXT
 );
 
-DROP TABLE IF EXISTS friendships;
 CREATE TABLE friendships(
     id SERIAL PRIMARY KEY,
     sender_id INT REFERENCES users(id) NOT NULL,
     recipient_id INT REFERENCES users(id) NOT NULL,
     accepted BOOLEAN DEFAULT false
 );
+
+CREATE TABLE images(
+    id SERIAL PRIMARY KEY,
+    userId INT REFERENCES users(id) ,
+    url VARCHAR,
+    username VARCHAR,
+    title VARCHAR,
+    description TEXT
+)
 

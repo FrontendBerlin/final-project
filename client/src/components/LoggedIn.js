@@ -38,7 +38,7 @@ const LoggedIn = function () {
                 }}
             >
                 <button className="LoogedInForm" type="submit">
-                    Change the Dish
+                    Log Out
                 </button>
             </form>
         </>
