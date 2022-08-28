@@ -902,3 +902,6 @@ canvas {
     border: none;
     border-radius: 20px;
 }
+#configuration {
+    transform: translate(220px, -268px);
+}

@@ -52,7 +52,7 @@ export default function MyRequest() {
                             className="findPeopleImg"
                             src={
                                 item.imageurl ||
-                                "https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?ixlib=rb-1.2.1&dl=sergey-pesterev-P0nWpyphwks-unsplash.jpg&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                                "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&dl=amy-shamblen-pJ_DCj9KswI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
                             }
                         />
                     }
@@ -62,7 +62,12 @@ export default function MyRequest() {
                                 {item.first}
                                 {item.last}
                             </Link>
-                            <Friendbutton userId={item.id} />
+                            <div
+                                className="divForFriendbutton"
+                                id="configuration"
+                            >
+                                <Friendbutton userId={item.id} />
+                            </div>
                         </p>
                     }
                     <hr className="hr2" />
