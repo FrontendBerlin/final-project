@@ -67,7 +67,7 @@ export default class LogIn extends Component {
         return (
             <>
                 <h1 className="registrationH1">
-                    Is it already a famous local flavor in USA?
+                    Do You Already Have An Account Here??
                 </h1>
                 {this.state.error && (
                     <p className="error">oops! something went wrong!</p>
@@ -82,14 +82,14 @@ export default class LogIn extends Component {
                         <input
                             type="text"
                             name="email"
-                            placeholder="Number of the State"
+                            placeholder="Email-Adress"
                             // value={this.state.email}
                             onChange={(e) => this.handleChange(e)}
                         />
                         <input
                             type="password"
                             name="password"
-                            placeholder="password"
+                            placeholder="Password"
                             // value={this.state.password}
                             onChange={(e) => this.handleChange(e)}
                         />

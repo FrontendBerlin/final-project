@@ -11,6 +11,7 @@ import Hobby from "./Hobby";
 import Album from "./Album";
 import FriendsAlbum from "./FriendsAlbum";
 import MyFriends from "./MyFriends";
+import MyRequest from "./MyRequest";
 
 export default class App extends Component {
     constructor(props) {
@@ -100,20 +101,27 @@ export default class App extends Component {
                     <div className="appDiv">
                         <Route path="/">
                             <Link to="/profile">
-                                <ProfilePic
-                                    first={this.state.first}
-                                    last={this.state.last}
-                                    profilePicUrl={this.state.profilePicUrl}
-                                    uploaderIsVisible={
-                                        this.state.uploaderIsVisible
-                                    }
-                                    isPopupOpen={this.state.isPopupOpen}
-                                    turnToUploader={this.turnToUploader}
-                                />
+                                <div className="appDivForTransform">
+                                    <ProfilePic
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        profilePicUrl={this.state.profilePicUrl}
+                                        uploaderIsVisible={
+                                            this.state.uploaderIsVisible
+                                        }
+                                        isPopupOpen={this.state.isPopupOpen}
+                                        turnToUploader={this.turnToUploader}
+                                    />
+                                </div>
                             </Link>
-                            <Link to="/myFriends">
-                                <button>My Friends</button>
-                            </Link>
+                            <div className="appDivForButton">
+                                <Link to="/myFriends">
+                                    <button id="btn3">My Friends</button>
+                                </Link>
+                                <Link to="/myRequest">
+                                    <button id="btn4">My Request</button>
+                                </Link>
+                            </div>
                         </Route>
 
                         <Route path="/profile">
@@ -157,6 +165,9 @@ export default class App extends Component {
                         </Route>
                         <Route path="/myFriends">
                             <MyFriends />
+                        </Route>
+                        <Route path="/myRequest">
+                            <MyRequest />
                         </Route>
                     </div>
                 </BrowserRouter>

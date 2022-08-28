@@ -117,7 +117,7 @@ export default function Friendbutton(props) {
             )}
             {friendship.accepted && (
                 <Link to={"/friendsAlbum/" + userId}>
-                    <button> Visit the Album of this Friend.</button>
+                    <button> Visit the Album</button>
                 </Link>
             )}
 

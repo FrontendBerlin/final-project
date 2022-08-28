@@ -78,7 +78,7 @@ export default class Registration extends Component {
         return (
             <>
                 <h1 className="registrationH1">
-                    Add a new local flavor in the big Menu of USA
+                    Create Your Account To Make New Friends!!!
                 </h1>
                 {this.state.error && (
                     <p className="error">oops! something went wrong!</p>
@@ -93,28 +93,28 @@ export default class Registration extends Component {
                         <input
                             type="text"
                             name="first"
-                            placeholder="Name of the Dish"
+                            placeholder="First Name"
                             // value={this.state.first}
                             onChange={(e) => this.handleChange(e)}
                         />
                         <input
                             type="text"
                             name="last"
-                            placeholder="Represented State"
+                            placeholder="Last Name"
                             // value={this.state.last}
                             onChange={(e) => this.handleChange(e)}
                         />
                         <input
-                            type="text"
+                            type="email"
                             name="email"
-                            placeholder="Number of the State"
+                            placeholder="Email-Adresse"
                             // value={this.state.email}
                             onChange={(e) => this.handleChange(e)}
                         />
                         <input
                             type="password"
                             name="password"
-                            placeholder="password"
+                            placeholder="Password"
                             // value={this.state.password}
                             onChange={(e) => this.handleChange(e)}
                         />

@@ -25,6 +25,12 @@ CREATE TABLE images(
     url VARCHAR,
     username VARCHAR,
     title VARCHAR,
-    description TEXT
-)
+    description TEXT,
+    likedPeople TEXT
+);
 
+CREATE TABLE imageship (
+    userId INT,
+    url VARCHAR,
+    likedPeople TEXT
+)

@@ -1,8 +1,11 @@
 body {
-    background: linear-gradient(-135deg, purple, orange, grey, green);
+    background: linear-gradient(-135deg, #ee7752, #e73c7e, pink, purple, aqua);
     background-size: 4000% 4000%;
     animation: gradient 10s ease infinite;
     height: 100vh;
+}
+li::marker {
+    content: "";
 }
 
 canvas {
@@ -12,8 +15,8 @@ canvas {
 
 .backgroundPic {
     height: 500px;
-    box-shadow: 0 0 0 4px #fff, 3px -3px 30px yellow, -3px 3px 30px orange;
-    border-radius: 50px;
+    box-shadow: 0 0 0 6px #fff, 3px -3px 30px yellow, -3px 3px 30px orange;
+    border-radius: 90px;
     animation: circle 3s ease infinite;
 }
 
@@ -25,7 +28,8 @@ canvas {
 }
 
 #welcome > h1 {
-    transform: translateX(-35px);
+    transform: translateX(-75px);
+    font-size: 40px;
 }
 
 #registration input {
@@ -42,11 +46,14 @@ canvas {
 }
 
 .registrationH1 {
-    margin-left: 8%;
+    margin-left: 20%;
+    font-size: 25px;
+    font-style: italic;
 }
 
 .registrationP {
-    transform: translateX(70px);
+    transform: translateX(180px);
+    font-weight: bold;
 }
 
 #welcome {
@@ -66,6 +73,9 @@ canvas {
     transform: translateX(5%);
     border-radius: 50px;
 }
+#welcomeDiv {
+    transform: translate(-40px, 10px);
+}
 /* .LoogedInForm {
     margin-top: 40px;
     margin-bottom: 30px;
@@ -82,11 +92,12 @@ canvas {
     position: relative;
     z-index: 0;
     border-radius: 10px;
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 30px;
+    margin-bottom: 15px;
     /* transform: translate(-50%);
     left: 50%; */
     margin-top: 10px;
+    transform: translate(30px, 18px);
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px yellow,
         0 0 20px yellow, 0 0 20px yellow, 0 0 25px yellow, 0 0 30px yellow;
 }
@@ -156,26 +167,29 @@ canvas {
 }
 
 .bioText {
-    width: 900px;
-    height: 300px;
+    width: 970px;
+    height: 10px;
     border: none;
     outline: none;
-    color: #fff;
-    background: #111;
+    color: black;
+    background: white;
     cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 1px;
     margin-bottom: 30px;
     /* transform: translate(-50%);
     left: 50%; */
     margin-top: 10px;
-    font-family: Brush Script MT;
-    font-size: 30px;
+    font-family: Comic Sans MS;
+
+    opacity: 0.5;
+    display: block;
+    transform: translate(20px, 20px);
 }
 
-.bioText:before {
+/* .bioText:before {
     content: "";
     background: linear-gradient(
         45deg,
@@ -204,7 +218,7 @@ canvas {
 }
 
 .bioText:active {
-    color: #000;
+    color: white;
 }
 
 .bioText:active:after {
@@ -221,10 +235,17 @@ canvas {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #111;
+    background: white;
     left: 0;
     top: 0;
     border-radius: 10px;
+} */
+.bioText:hover {
+    height: 300px;
+    font-size: 30px;
+    word-wrap: break-word;
+
+    box-shadow: 0 0 0 10px white, 3px -3px 30px yellow, -3px 3px 30px pink;
 }
 
 @keyframes glowing {
@@ -262,6 +283,8 @@ canvas {
     height: 200px;
     width: 200px;
     object-fit: fill;
+    display: block;
+    margin-bottom: 20px;
 }
 
 .profilePicDiv img {
@@ -274,22 +297,19 @@ canvas {
     width: 30%;
     /* background-color: yellow; */
     /* left: 30%; */
-    height: 200px;
-    height: 100px;
-    box-shadow: 0 0 0 5px white, 3px -3px 30px pink, -3px 3px 30px purple;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
-        0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
-
+    height: 500px;
     color: #ffffff;
     width: 500px;
     float: left;
-    transform: translate(0px, 10px);
+    transform: translate(-530px, -15px);
+    opacity: 0.8;
 }
 
 .uploaderX {
     position: absolute;
     left: 95%;
     color: white;
+    display: block;
 }
 
 .uploaderDivP {
@@ -339,9 +359,14 @@ canvas {
     height: 100%;
     width: 100%;
     margin-left: 50%;
-    transform: translate(600px, -490px);
+    transform: translate(580px, -545px);
 }
-.bioEditorDiv button {
+.bioEditorDivButton {
+    display: flex;
+    width: 1000px;
+    justify-content: space-around;
+}
+/* .bioEditorDiv button {
     height: 30px;
     margin-bottom: 20px;
     display: block;
@@ -352,7 +377,7 @@ canvas {
     box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
     border: 5px solid pink;
     border-radius: 30px;
-}
+} */
 .findPeopleDiv {
     position: absolute;
     margin-left: 40%;
@@ -381,6 +406,9 @@ canvas {
     border: 5px solid pink;
     border-radius: 30px;
 }
+.findPeopleLiP {
+    transform: translate(30px, 10px);
+}
 .findPeopleLiP:hover {
     color: white;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px yellow,
@@ -390,6 +418,8 @@ canvas {
     height: 200px;
     width: 200px;
     object-fit: cover;
+    margin-top: 30px;
+    transform: translate(30px, 10px);
 }
 .findPeopleImg:hover {
     box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
@@ -472,6 +502,248 @@ canvas {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+.albumUl li::marker {
+    content: "";
+}
 .clicked {
     opacity: 0.5;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------special button  */
+.btn-two {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
+    height: 40px;
+    width: 120px;
+    transform: translate(-10px, 5px);
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-two span {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    width: 200%;
+    height: 200%;
+}
+.btn-two::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid yellow;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+.btn-two::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid yellow;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+.btn-two:hover::before {
+    transform: rotate(-45deg);
+    background-color: rgba(255, 255, 255, 0);
+}
+.btn-two:hover::after {
+    transform: rotate(45deg);
+    background-color: rgba(255, 255, 255, 0);
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------special Border  */
+#box {
+    border: 20px solid pink;
+    border-image-source: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/hearts-border-image.png);
+    border-image-slice: 20 22;
+    border-image-repeat: round;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------Description of Pic in Album  */
+.descriptionInPicAlbum {
+    width: 200px;
+    height: 200px px;
+    overflow-wrap: break-word;
+    transform: translate(0px, -222px);
+    background-color: orange;
+    opacity: 0;
+    position: absolute;
+}
+
+.descriptionInPicAlbum:hover {
+    width: 200px;
+    height: 200px;
+    overflow-wrap: break-word;
+    transform: translate(0px, -222px);
+    background-color: orange;
+    opacity: 0.7;
+    position: absolute;
+}
+.descriptionInput:focus {
+    height: 150px;
+    width: 400px;
+    overflow-wrap: break-word;
+}
+.descriptionInput {
+    width: 250px;
+    overflow-wrap: break-word;
+}
+.albumForm {
+    display: inline;
+    position: absolute;
+    left: 260px;
+    top: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    flex-direction: column;
+}
+.deletePicAlbum {
+    display: block;
+}
+
+.followersNone {
+    display: none;
+}
+.followers {
+    display: block;
+}
+
+#btn3 {
+    box-sizing: border-box;
+
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0.6em;
+    color: white;
+    cursor: pointer;
+
+    /* display: flex; */
+
+    align-self: center;
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-right: 10px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+#btn3:hover,
+#btn3:focus {
+    color: #fff;
+    outline: 0;
+}
+
+#btn3 {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+#btn3:hover {
+    box-shadow: 0 0 40px 40px orchid inset;
+}
+
+#btn4 {
+    box-sizing: border-box;
+
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0.6em;
+    color: white;
+    cursor: pointer;
+
+    /* display: flex; */
+
+    align-self: center;
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1;
+    /* margin: 20px; */
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+#btn4:hover,
+#btn4:focus {
+    color: #fff;
+    outline: 0;
+}
+
+#btn4 {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+#btn4:hover {
+    box-shadow: 0 0 40px 40px aqua inset;
+}
+
+.appDivForButton {
+    display: flex;
+}
+
+.appDivForTransform {
+    transform: translate(20px, 10px);
+}
+
+.hr1 {
+    border: none;
+    height: 20px;
+    width: 100%;
+    height: 50px;
+    margin-top: 0;
+    border-bottom: 1px solid orange;
+    box-shadow: 0 20px 20px -20px yellow;
+}
+
+.divForFriendbutton {
+    position: absolute;
+    transform: translate(220px, -290px);
+}
+
+.textareaFromEditor {
+    transform: translate(-210px, -300px);
+    position: absolute;
+}
+.textareaFromEditor textarea {
+    height: 200px;
+    width: 500px;
+    border: 20px solid pink;
+    border-image-source: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/hearts-border-image.png);
+    border-image-slice: 20 22;
+    border-image-repeat: round;
+    background-color: transparent;
+    font-size: 25px;
+    color: wheat;
+    opacity: 0.7;
+}
+.buttonFromEditor {
+    background-color: transparent;
+    margin-top: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    width: 50px;
+    height: 30px;
+}
+.buttonFromEditor:hover {
+    box-shadow: 0 0 0 2px #fff, 3px -3px 30px yellow, -3px 3px 30px orange;
+    font-weight: bolder;
 }

@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
+import Like from "./Like";
 
 export default function FriendsAlbum() {
     const { userId } = useParams();
     const [image, setImage] = useState([]);
     const [friend, setFriend] = useState([]);
+
+    const handleLike = (e) => {
+        console.log(
+            ")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            e.target
+        );
+    };
 
     useEffect(() => {
         (async () => {
@@ -15,7 +23,7 @@ export default function FriendsAlbum() {
                 .then((resp) => resp.json())
                 .then((data) => {
                     console.log(
-                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from api: ",
+                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from albumEffect: ",
                         data
                     );
                     setImage(data.url);
@@ -28,7 +36,7 @@ export default function FriendsAlbum() {
                 .then((resp) => resp.json())
                 .then((data) => {
                     console.log(
-                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from api: ",
+                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from api/user: ",
                         data
                     );
                     setFriend(data);
@@ -39,7 +47,12 @@ export default function FriendsAlbum() {
         <>
             <div>
                 <div>Welcom to Album of {friend.first}</div>
-                <img src={friend.url} />
+                <img
+                    src={
+                        friend.imageUrl ||
+                        "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&dl=amy-shamblen-pJ_DCj9KswI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                    }
+                />
 
                 <br></br>
                 <hr></hr>
@@ -47,15 +60,11 @@ export default function FriendsAlbum() {
                     <ul className="albumUl">
                         {image.map((item, idx) => (
                             <li key={idx}>
-                                {
-                                    <img
-                                        className="findPeopleImg"
-                                        src={
-                                            item.url ||
-                                            "https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?ixlib=rb-1.2.1&dl=sergey-pesterev-P0nWpyphwks-unsplash.jpg&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
-                                        }
-                                    />
-                                }
+                                <Like
+                                    url={item.url}
+                                    userId={item.userid}
+                                    handleLike={handleLike}
+                                />
                             </li>
                         ))}
                     </ul>
@@ -64,40 +73,3 @@ export default function FriendsAlbum() {
         </>
     );
 }
-
-// const [users, setUsers] = useState([]);
-// useEffect(() => {
-//     fetch(`/api/user/${userId}`)
-//         .then((resp) => resp.json())
-//         .then((data) => {
-//             console.log(
-//                 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from api: ",
-//                 data.userId
-//             );
-//             setUsers(data.userId);
-//         });
-// }, []);
-
-// return (
-//     <div className="otherPeopleDiv">
-//         <img
-//             className="OtherProfileImg"
-//             src={
-//                 users.imageUrl ||
-//                 "https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?ixlib=rb-1.2.1&dl=sergey-pesterev-P0nWpyphwks-unsplash.jpg&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
-//             }
-//             alt="hi"
-//         />
-//         <div className="otherPeopleDivName">
-//             {users.first}
-//             _from_
-//             {users.last}
-//         </div>
-//         <div className="otherPeopleDivDiv">{users.bio || "no bio yet"}</div>
-//         <Friendbutton userId={userId} />
-//         <button>
-//             {" "}
-//             <Link to="/users">Back to the selected Dish</Link>{" "}
-//         </button>
-//     </div>
-// );

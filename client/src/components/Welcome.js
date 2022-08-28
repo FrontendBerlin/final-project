@@ -6,19 +6,18 @@ import ResetPassword from "./ResetPassword";
 export default function Welcome() {
     return (
         <div id="welcome">
-            <h1>
-                Lets combine the different local flavors from 50 states of
-                USA!!!
+            <h1 className="welcomeH1">
+                Friendship marks a life even more deeply than love.
                 {/* hier need the font-family */}
             </h1>
 
             <img
                 className="backgroundPic"
-                src="https://images.unsplash.com/photo-1599893326319-fdc6782b79d8?ixlib=rb-1.2.1&dl=divani-diva-HAwDdAi6Fho-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                src="https://images.unsplash.com/photo-1560821829-18a5fbb8b4ce?ixlib=rb-1.2.1&dl=noorulabdeen-ahmad-MW_2Osq-yIE-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
             />
             {/* hier need the pic */}
             <BrowserRouter>
-                <div className="welcomeDiv">
+                <div id="welcomeDiv">
                     <Route exact path="/">
                         <Registration />
                     </Route>

@@ -174,21 +174,25 @@ module.exports.findUsersWithHobbyWithId = (hobby, selectedPeopleId) => {
     return db.query(query, [`%${hobby}%`, selectedPeopleId]);
 };
 
-module.exports.insertImage = (url, userId) => {
+module.exports.insertImage = (url, description, userId) => {
     return db.query(
         `INSERT INTO images
-            (url, userId)
-            VALUES ($1, $2)
-            RETURNING url;`,
-        [url, userId]
+            (url,description, userId)
+            VALUES ($1, $2, $3)
+            RETURNING url, description;`,
+        [url, description, userId]
     );
 };
 
 module.exports.getAlbum = (userId) => {
     return db.query(
-        `SELECT url FROM images WHERE userId = $1 ORDER BY id DESC LIMIT 5;`,
+        `SELECT url,userId,id FROM images WHERE userId = $1 ORDER BY id DESC LIMIT 5;`,
         [userId]
     );
+};
+
+module.exports.deletePicAlbum = (id) => {
+    return db.query(`DELETE FROM images WHERE id = $1;`, [id]);
 };
 // return db.query(
 //     `SELECT id,first,last,imageurl,bio FROM users WHERE first ILIKE $1 ORDER BY id DESC LIMIT 3 ;`,
@@ -204,7 +208,15 @@ module.exports.myFriends = (userId) => {
         `;
     return db.query(query, [userId]);
 };
-
+module.exports.myRequest = (userId) => {
+    const query = `(
+        SELECT recipient_id FROM friendships
+        WHERE accepted = false AND sender_id = $1) UNION ALL (
+        SELECT sender_id FROM friendships
+        WHERE accepted = false AND recipient_id = $1)
+        `;
+    return db.query(query, [userId]);
+};
 // module.exports.myFriendsFromRecipient = (userId) => {
 //     const query = `
 //         SELECT sender_id FROM friendships
@@ -215,3 +227,33 @@ module.exports.getMyFriends = (friendsId) => {
     const query = `SELECT id,first,last,imageurl,bio FROM users WHERE id = ANY($1)`;
     return db.query(query, [friendsId]);
 };
+module.exports.getMyRequest = (requestId) => {
+    const query = `SELECT id,first,last,imageurl,bio FROM users WHERE id = ANY($1)`;
+    return db.query(query, [requestId]);
+};
+
+module.exports.insertLikedPeople = (userId, url, likedPeopleId) => {
+    return db.query(
+        `INSERT INTO imageship (userid,url,likedPeople) VALUES ($1,$2,$3);`,
+        [userId, url, likedPeopleId]
+    );
+};
+module.exports.deleteLikedPeople = (userId, url, likedPeopleId) => {
+    return db.query(
+        `DELETE FROM imageship WHERE userid=$1 AND url=$2 AND likedPeople=$3`,
+        [userId, url, likedPeopleId]
+    );
+};
+module.exports.checkFollowersInDb1 = (id) => {
+    return db.query(` SELECT url FROM images WHERE id=$1;`, [id]);
+};
+module.exports.checkFollowersInDb2 = (url) => {
+    return db.query(`SELECT likedpeople FROM imageship WHERE url=$1;`, [url]);
+};
+module.exports.checkFollowersInDb3 = (idList) => {
+    return db.query(`SELECT first,last FROM users WHERE id=ANY($1);`, [idList]);
+};
+// );
+// module.exports.deletePicAlbum = (id) => {
+//     return db.query(`DELETE FROM images WHERE id = $1;`, [id]);
+// };

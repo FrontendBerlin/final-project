@@ -430,20 +430,27 @@ app.post(
     uploader.single("photo"),
     s3.upload,
     function (req, res) {
-        console.log("/upload of album is reached");
+        console.log(
+            "/upload of album is reached and req.body is:",
+            req.body,
+            ">>>>>>>>>>>>req.body.description is:",
+            req.body.Description
+        );
         const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
         console.log(">>>>>>>>>>>>>url of album", url);
         console.log(">>>>>>>>>>>>>userId of album", req.session.userId);
         if (req.file) {
-            db.insertImage(url, req.session.userId).then((result) => {
-                console.log(
-                    "..................................result of insertImage:",
-                    result
-                );
-                res.json({
-                    url: result.rows[0].url,
-                });
-            });
+            db.insertImage(url, req.body.Description, req.session.userId).then(
+                (result) => {
+                    console.log(
+                        "..................................result of insertImage:",
+                        result
+                    );
+                    res.json({
+                        result: result.rows[0],
+                    });
+                }
+            );
         } else {
             res.json({
                 success: false,
@@ -456,7 +463,10 @@ app.post(
 app.get("/albumEffect.json", (req, res) => {
     console.log("💚💚💚");
     db.getAlbum(req.session.userId).then((result) => {
-        console.log(">>>>>>>>>>>>>>>>>result from albumEffect is:", result);
+        console.log(
+            ">>>>>>>>>>>>>>>>>result from albumEffect is:",
+            result.rows
+        );
         res.json({
             url: result.rows,
         });
@@ -467,13 +477,23 @@ app.get("/albumEffect.json", (req, res) => {
 app.get("/albumEffect/:userId", (req, res) => {
     console.log("💚💚💚");
     db.getAlbum(req.params.userId).then((result) => {
-        console.log(">>>>>>>>>>>>>>>>>result from albumEffect is:", result);
+        console.log(
+            ">>>>>>>>>>>>>>>>>result from albumEffect is:",
+            result.rows
+        );
         res.json({
             url: result.rows,
         });
     });
 });
-
+// --------------------------------------------------------------------------------------------------------------post deletePic.json
+app.post("/deletePic.json", (req, res) => {
+    console.log(
+        "---------------💚-------------------->req.body from deletePic:",
+        req.body
+    );
+    db.deletePicAlbum(req.body.id);
+});
 // --------------------------------------------------------------------------------------------------------------get myFriends.json
 app.get("/myFriends.json", (req, res) => {
     db.myFriends(req.session.userId).then((result) => {
@@ -483,7 +503,15 @@ app.get("/myFriends.json", (req, res) => {
         });
     });
 });
-
+// --------------------------------------------------------------------------------------------------------------get myRequest.json
+app.get("/myRequest.json", (req, res) => {
+    db.myRequest(req.session.userId).then((result) => {
+        console.log(">>>>>>>>>>>>>>>>>result from myRequest is:", result.rows);
+        res.json({
+            myRequest: result.rows,
+        });
+    });
+});
 // --------------------------------------------------------------------------------------------------------------post myFriendsInfo.json
 app.post("/myFriendsInfo.json", (req, res) => {
     console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
@@ -496,7 +524,48 @@ app.post("/myFriendsInfo.json", (req, res) => {
         });
     });
 });
-
+// --------------------------------------------------------------------------------------------------------------post myRequestInfo.json
+app.post("/myRequestInfo.json", (req, res) => {
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
+    const requestId = req.body.map((request) => request.recipient_id);
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", requestId);
+    db.getMyRequest(requestId).then((result) => {
+        console.log(".............................", result.rows);
+        res.json({
+            myRequestInfo: result.rows,
+        });
+    });
+});
+// --------------------------------------------------------------------------------------------------------------post likePic.json
+app.post("/likePic.json", (req, res) => {
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
+    db.insertLikedPeople(req.body.userId, req.body.url, req.session.userId);
+});
+// --------------------------------------------------------------------------------------------------------------post likePic.json
+app.post("/unlikePic.json", (req, res) => {
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
+    db.deleteLikedPeople(req.body.userId, req.body.url, req.session.userId);
+});
+// --------------------------------------------------------------------------------------------------------------post checkFollowers.json
+app.post("/checkFollowers.json", (req, res) => {
+    console.log("-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-", req.body);
+    db.checkFollowersInDb1(req.body.id).then((url) => {
+        console.log("----------------------------------->url:", url);
+        db.checkFollowersInDb2(url.rows[0].url).then((result) => {
+            console.log(".....................................:", result.rows);
+            let likedPeopleList = [];
+            result.rows.map((item) => {
+                return likedPeopleList.push(item.likedpeople);
+            });
+            db.checkFollowersInDb3(likedPeopleList).then((result) => {
+                console.log("💙💙💙💙💙💙💙💙💙💙💜:", result);
+                res.json({
+                    likedpeople: result.rows,
+                });
+            });
+        });
+    });
+});
 // --------------------------------------------------------------------------------------------------------------
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));

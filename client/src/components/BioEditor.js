@@ -105,49 +105,62 @@ export default class BioEditor extends Component {
     render() {
         return (
             <div className="bioEditorDiv">
-                <p>
+                <div className="bioEditorDivButton">
                     {this.state.bio && (
-                        <button onClick={this.editBio}>Edit your Bio</button>
+                        <button className="btn-two" onClick={this.editBio}>
+                            Edit your Bio
+                        </button>
                     )}
                     {!this.state.bio && (
-                        <button onClick={this.editBio}>Add your Bio</button>
+                        <button className="btn-two" onClick={this.editBio}>
+                            Add your Bio
+                        </button>
                     )}
-                </p>
-                {this.state.textareaShowing && (
-                    <>
-                        <form
-                            onSubmit={(e) => {
-                                this.saveBio(e);
-                            }}
-                        >
-                            <textarea name="bioText"></textarea>
-                            <button type="submit">Save</button>
-                        </form>
-                    </>
-                )}
-                <Link to="/profile/uploader">
-                    <button>Change the photos</button>
-                </Link>
+                    {this.state.textareaShowing && (
+                        <>
+                            <form
+                                className="textareaFromEditor"
+                                onSubmit={(e) => {
+                                    this.saveBio(e);
+                                }}
+                            >
+                                <textarea name="bioText"></textarea>
+                                <button
+                                    className="buttonFromEditor"
+                                    type="submit"
+                                >
+                                    Save
+                                </button>
+                            </form>
+                        </>
+                    )}
+                    <Link to="/profile/uploader">
+                        <button className="btn-two">Change the photos</button>
+                    </Link>
+
+                    <Link to="/album">
+                        <button className="btn-two">Go to your Album</button>
+                    </Link>
+                    <Link to="/users">
+                        <button className="btn-two">Find People</button>
+                    </Link>
+                    <Link to="/hobby">
+                        <button className="btn-two">Choose your Hobby</button>
+                    </Link>
+                    <Link to="/">
+                        <button className="btn-two">X</button>
+                    </Link>
+                </div>
                 <Route path="/profile/uploader">
                     <Uploader
                         closeUploader={this.closeUploader}
                         handleUploader={this.handleUploader}
                     />
                 </Route>
-                <Link to="/album">
-                    <button>Go to your Album</button>
-                </Link>
-                <Link to="/">
-                    <button>Finished Description</button>
-                </Link>
-                <button>
-                    {" "}
-                    <Link to="/users">Find Friends</Link>{" "}
-                </button>
-                <Link to="/hobby">
-                    <button>Choose your Hobby</button>
-                </Link>
-                <div className="bioText">{this.state.bio}</div>
+                <div className="bioText">
+                    My Bio: <br></br>
+                    {this.state.bio}
+                </div>
             </div>
         );
     }

@@ -14,10 +14,11 @@ export default class ProfilePic extends Component {
         return (
             <>
                 <img
+                    id="box"
                     onClick={this.props.turnToUploader}
                     src={
                         this.props.profilePicUrl ||
-                        "https://images.unsplash.com/photo-1587361144243-03f7925381ca?ixlib=rb-1.2.1&dl=emil-huang-j-iRFjHCs5o-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                        "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&dl=amy-shamblen-pJ_DCj9KswI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
                     }
                     alt={this.props.first + " " + this.props.last}
                 />
