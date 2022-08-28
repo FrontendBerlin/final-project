@@ -61,23 +61,25 @@ export default function FindPeople() {
 
     return (
         <div className="findPeopleDiv">
-            <input
-                // onChange={handleInput}
-                onChange={(e) => setSearch(e.target.value)}
-                // defaultValue={users}
-                placeholder="Which State does the Dish represent"
-            />
-            <button>
-                {" "}
-                <Link to="/profile">Back to the selected Dish</Link>{" "}
-            </button>
-            <button
-                onClick={(e) => {
-                    popup(e);
-                }}
-            >
-                Select People from their Hobbies
-            </button>
+            <div className="findPeopleSearcher">
+                <input
+                    // onChange={handleInput}
+                    onChange={(e) => setSearch(e.target.value)}
+                    // defaultValue={users}
+                    placeholder="Search People with Name"
+                />
+                {/* <button>
+                    {" "}
+                    <Link to="/profile">Back</Link>{" "}
+                </button> */}
+                <button
+                    onClick={(e) => {
+                        popup(e);
+                    }}
+                >
+                    Hobby Filter
+                </button>
+            </div>
             {popupSelectFromHobbies && (
                 <SelectFromHobbies onUsersFilter={onUsersFilter} />
             )}
@@ -103,6 +105,7 @@ export default function FindPeople() {
                                     </Link>
                                 </p>
                             }
+                            <hr className="hr3" />
                         </li>
                     ))}
                 </ul>

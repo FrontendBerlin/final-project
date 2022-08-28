@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Hobby() {
     const [hobby, setHobby] = useState({});
+    const [checkifsaved, setCheckIfSaved] = useState(false);
     // const HobbyButton = [
     //     ...document.querySelectorAll("input[type=checkbox]"),
     // ].map((element) => element.value);
@@ -47,11 +48,15 @@ export default function Hobby() {
                 //     body: JSON.stringify(data),
                 // });
             });
+        setCheckIfSaved(true);
     };
     const handleChange = (e) => {
         console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", e.target.value);
         setHobby({ ...hobby, [e.target.value]: e.target.checked });
     };
+    useEffect(() => {
+        setCheckIfSaved(false);
+    }, []);
     return (
         <>
             <form
@@ -59,7 +64,7 @@ export default function Hobby() {
                     handleSubmit(e);
                 }}
             >
-                <fieldset>
+                <fieldset className="hobbyFieldset">
                     <legend>Choose your interests</legend>
                     <div>
                         <input
@@ -112,11 +117,19 @@ export default function Hobby() {
                         <label htmlFor="music">Music</label>
                     </div>
                 </fieldset>
-                <button type="submit">Save Your Hobbies</button>
+                {checkifsaved == false && (
+                    <button className="savehobby" type="submit">
+                        ✔
+                    </button>
+                )}
+                {checkifsaved == true && (
+                    <Link to="/profile">
+                        <button className="savehobby1" type="submit">
+                            Back↩
+                        </button>
+                    </Link>
+                )}
             </form>
-            <Link to="/profile">
-                <button>Go back to the Profile</button>
-            </Link>
         </>
     );
 }

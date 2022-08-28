@@ -397,36 +397,28 @@ canvas {
 .findPeopleDiv {
     position: absolute;
     margin-left: 40%;
+    transform: translate(-50px, -290px);
 }
 .findPeopleDiv input {
+    border: 5px solid white;
     border-radius: 20px;
     width: 300px;
     height: 30px;
     transform: translateX(40px);
-    background: linear-gradient(-135deg, aqua, yellow, white);
-    background-size: 4000% 4000%;
-    animation: gradient 10s ease infinite;
+    background: transparent;
 }
 .findPeopleDiv input:focus {
     box-shadow: 0 0 0 4px #fff, 3px -3px 30px white, -3px 3px 30px white;
 }
-.findPeopleDiv button {
-    display: block;
-    margin-top: 10px;
-    transform: translateX(40px);
-    border: 3px solid white;
-}
-.findPeopleDiv button:hover {
-    color: red;
-    box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
-    border: 5px solid pink;
-    border-radius: 30px;
-}
+
 .findPeopleLiP {
     transform: translate(0px, 15px);
+    font-size: larger;
+    font-weight: bolder;
+    margin-bottom: 0px;
 }
 .findPeopleLiPP {
-    transform: translate(50px, -10px);
+    /* transform: translate(50px, -10px); */
     font-size: larger;
     font-weight: bolder;
 }
@@ -445,6 +437,13 @@ canvas {
 }
 .findPeopleImg:hover {
     box-shadow: 0 0 0 4px #fff, 3px -3px 30px orange, -3px 3px 30px yellow;
+}
+.findPeopleSearcher {
+    display: flex;
+    justify-content: space-around;
+    transform: translate(-55px, 20px);
+    width: 500px;
+    margin-bottom: 40px;
 }
 .OtherProfileImg {
     height: 200px;
@@ -537,8 +536,30 @@ canvas {
 }
 #selectFromHobbiesUl {
     display: flex;
-    transform: translate(-40px, 10px);
+    transform: translate(-40px, 20px);
 }
+#selectFromHobbiesUl button {
+    background-color: transparent;
+    transform: translateX(80px);
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    width: 60px;
+    height: 60px;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-right: 10px;
+    text-align: center;
+}
+#selectFromHobbiesUl button:hover {
+    width: 75px;
+    height: 75px;
+    font-size: 20px;
+    border: 5px dotted wheat;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px wheat,
+        0 0 20px wheat, 0 0 20px wheat, 0 0 25px wheat, 0 0 30px wheat;
+}
+
 #selectFromHobbiesUl li::marker {
     content: "";
 }
@@ -821,6 +842,16 @@ canvas {
     box-shadow: 0 20px 20px -20px aqua;
 }
 
+.hr3 {
+    border: none;
+    height: 20px;
+    width: 80%;
+    height: 50px;
+    border-bottom: 1px solid wheat;
+    box-shadow: 0 20px 20px -20px white;
+    transform: translateX(-30%);
+}
+
 .divForFriendbutton {
     position: absolute;
     transform: translate(220px, -290px);
@@ -904,4 +935,84 @@ canvas {
 }
 #configuration {
     transform: translate(220px, -268px);
+}
+
+.hobbyFieldset {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    transform: translate(400px, -300px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 3px dotted wheat;
+}
+
+.hobbyFieldset legend {
+    font-size: 25px;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 0 0 15px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px blue,
+        0 0 20px blue, 0 0 20px blue, 0 0 25px yellow, 0 0 30px yellow;
+}
+.hobbyFieldset label {
+    font-size: 20px;
+    font-weight: bolder;
+    color: wheat;
+}
+.hobbyFieldset label:hover {
+    font-size: 22px;
+    color: white;
+    text-shadow: 0 0 15px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px blue,
+        0 0 20px blue, 0 0 20px blue, 0 0 25px yellow, 0 0 30px yellow;
+}
+.findPeopleSearcher button {
+    background-color: transparent;
+    transform: translateX(80px);
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    width: 200px;
+    height: 40px;
+    font-size: larger;
+    font-weight: bolder;
+}
+.findPeopleSearcher button:hover {
+    width: 250px;
+    border-radius: 20px;
+    text-shadow: 0 0 15px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px blue,
+        0 0 20px blue, 0 0 20px blue, 0 0 25px yellow, 0 0 30px yellow;
+}
+
+.savehobby {
+    transform: translate(710px, 0px);
+    background-color: transparent;
+    margin-top: 5px;
+    border: 2px solid green;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: 20px;
+    color: green;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+.savehobby:hover {
+    box-shadow: 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+}
+.savehobby1 {
+    transform: translate(670px, 10px);
+    background-color: transparent;
+    margin-top: 5px;
+    border: 2px solid green;
+    border-radius: 20px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: green;
+    width: 100px;
+    height: 30px;
+    text-align: center;
 }

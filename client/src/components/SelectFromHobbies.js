@@ -68,7 +68,7 @@ export default function SelectFromHobbies({ onUsersFilter }) {
                 <li>
                     {popup.indexOf("coding") == -1 && (
                         <button name="coding" onClick={(e) => selectPeople(e)}>
-                            Coding
+                            Code
                         </button>
                     )}
                     {popup.indexOf("coding") !== -1 && (
@@ -104,7 +104,7 @@ export default function SelectFromHobbies({ onUsersFilter }) {
                 <li>
                     {popup.indexOf("cooking") == -1 && (
                         <button name="cooking" onClick={(e) => selectPeople(e)}>
-                            Cooking
+                            Cook
                         </button>
                     )}
                     {popup.indexOf("cooking") !== -1 && (
