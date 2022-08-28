@@ -148,7 +148,7 @@ export default class BioEditor extends Component {
                         <button className="btn-two">Choose your Hobby</button>
                     </Link>
                     <Link to="/">
-                        <button className="btn-two">X</button>
+                        <button className="btn-two">Back</button>
                     </Link>
                 </div>
                 <Route path="/profile/uploader">

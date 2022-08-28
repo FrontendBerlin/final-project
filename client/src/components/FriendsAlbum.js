@@ -46,13 +46,18 @@ export default function FriendsAlbum() {
     return (
         <>
             <div>
-                <div>Welcom to Album of {friend.first}</div>
-                <img
-                    src={
-                        friend.imageUrl ||
-                        "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&dl=amy-shamblen-pJ_DCj9KswI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
-                    }
-                />
+                <div className="friendsAlbumHeader">
+                    <div>
+                        Welcom to Album of{" "}
+                        <Link to="/myFriends">{friend.first}</Link>{" "}
+                    </div>
+                    {/* <img
+                        src={
+                            friend.imageUrl ||
+                            "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&dl=amy-shamblen-pJ_DCj9KswI-unsplash.jpg&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
+                        }
+                    /> */}
+                </div>
 
                 <br></br>
                 <hr></hr>
@@ -64,6 +69,7 @@ export default function FriendsAlbum() {
                                     url={item.url}
                                     userId={item.userid}
                                     handleLike={handleLike}
+                                    description={item.description}
                                 />
                             </li>
                         ))}

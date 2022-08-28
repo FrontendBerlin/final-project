@@ -108,6 +108,7 @@ export default function Friendbutton(props) {
         <div id="friendButtonDiv">
             {friendship.accepted && (
                 <button
+                    id="cancelFriendship"
                     onClick={(e) => {
                         cancelFriendship(e);
                     }}

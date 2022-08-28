@@ -44,6 +44,7 @@ export default function MyRequest() {
     }, [myRequest]);
     return (
         <ul>
+            <hr className="hr2" />
             {myRequestInfo.map((item, idx) => (
                 <li key={idx}>
                     {
@@ -64,6 +65,7 @@ export default function MyRequest() {
                             <Friendbutton userId={item.id} />
                         </p>
                     }
+                    <hr className="hr2" />
                 </li>
             ))}
         </ul>

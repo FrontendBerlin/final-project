@@ -58,10 +58,12 @@ export default function MyFriends() {
                     }
                     {
                         <p className="findPeopleLiP">
-                            <Link to={"/user/" + item.id}>
-                                {item.first}
-                                {item.last}
-                            </Link>
+                            <p className="findPeopleLiPP">
+                                <Link to={"/user/" + item.id}>
+                                    {item.first}
+                                    {item.last}
+                                </Link>
+                            </p>
                             <div className="divForFriendbutton">
                                 <Friendbutton userId={item.id} />
                             </div>

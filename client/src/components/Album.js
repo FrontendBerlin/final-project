@@ -69,13 +69,12 @@ export default function Album() {
                 .then((resp) => resp.json())
                 .then((data) => {
                     console.log(
-                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from api: ",
+                        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data from albumEffect: ",
                         data
                     );
                     setImage(data.url);
                 });
         })();
-        console.log("❣❣❣❣❣❣❣❣❣❣❣❣❣❣❣❣❣❣❣image after useEffect:", image);
     }, [deleteSituation]);
     return (
         <>
@@ -97,7 +96,7 @@ export default function Album() {
                     <input type="file" name="photo" />
                     <button style={{ width: 80 + "px" }} name="submit">
                         {" "}
-                        Submit{" "}
+                        ✔{" "}
                     </button>
                 </form>
                 <br></br>
@@ -116,6 +115,8 @@ export default function Album() {
                                     />
                                 }
                                 <p className="descriptionInPicAlbum">
+                                    <strong>Description:</strong>
+                                    <br />
                                     {item.description}
                                 </p>
                                 {/* <p>

@@ -31,17 +31,21 @@ export default function OtherProfile() {
                 }
                 alt="hi"
             />
-            <div className="otherPeopleDivName">
+            <div id="otherPeopleDivName">
                 {users.first}
-                _from_
+
                 {users.last}
             </div>
-            <div className="otherPeopleDivDiv">{users.bio || "no bio yet"}</div>
-            <Friendbutton userId={userId} />
-            <button>
-                {" "}
-                <Link to="/users">Back to the selected Dish</Link>{" "}
-            </button>
+            <div className="otherPeopleDivDiv">
+                {users.bio || "no bio added yet😥"}
+            </div>
+            <div className="otherProfileButton">
+                <Friendbutton userId={userId} />
+                <button>
+                    {" "}
+                    <Link to="/users">Back to FindPeople</Link>{" "}
+                </button>
+            </div>
         </div>
     );
 }

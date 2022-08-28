@@ -50,9 +50,14 @@ export default function Like(props) {
                         "https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?ixlib=rb-1.2.1&dl=sergey-pesterev-P0nWpyphwks-unsplash.jpg&w=640&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
                     }
                 />
-
+                <p className="descriptionInPicAlbum">
+                    <strong>Description:</strong>
+                    <br />
+                    {props.description}
+                </p>
                 {likeState == true && (
                     <button
+                        className="likeSymbol"
                         type="submit"
                         onClick={(e) => {
                             likeClick(e);
@@ -64,6 +69,7 @@ export default function Like(props) {
                 )}
                 {likeState == false && (
                     <button
+                        className="unlikeSymbol"
                         type="submit"
                         onClick={(e) => {
                             likeClick(e);

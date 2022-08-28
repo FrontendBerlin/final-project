@@ -100,20 +100,21 @@ export default class App extends Component {
                 <BrowserRouter>
                     <div className="appDiv">
                         <Route path="/">
-                            <Link to="/profile">
-                                <div className="appDivForTransform">
-                                    <ProfilePic
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        profilePicUrl={this.state.profilePicUrl}
-                                        uploaderIsVisible={
-                                            this.state.uploaderIsVisible
-                                        }
-                                        isPopupOpen={this.state.isPopupOpen}
-                                        turnToUploader={this.turnToUploader}
-                                    />
-                                </div>
-                            </Link>
+                            <div className="appDivForTransform">
+                                <Link to="/profile">
+                                    <p id="pLinkToProfile">nothing</p>
+                                </Link>
+                                <ProfilePic
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    profilePicUrl={this.state.profilePicUrl}
+                                    uploaderIsVisible={
+                                        this.state.uploaderIsVisible
+                                    }
+                                    isPopupOpen={this.state.isPopupOpen}
+                                    turnToUploader={this.turnToUploader}
+                                />
+                            </div>
                             <div className="appDivForButton">
                                 <Link to="/myFriends">
                                     <button id="btn3">My Friends</button>

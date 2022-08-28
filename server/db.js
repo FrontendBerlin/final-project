@@ -186,7 +186,7 @@ module.exports.insertImage = (url, description, userId) => {
 
 module.exports.getAlbum = (userId) => {
     return db.query(
-        `SELECT url,userId,id FROM images WHERE userId = $1 ORDER BY id DESC LIMIT 5;`,
+        `SELECT url,userId,id,description FROM images WHERE userId = $1 ORDER BY id DESC LIMIT 5;`,
         [userId]
     );
 };
