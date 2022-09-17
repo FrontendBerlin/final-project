@@ -211,7 +211,7 @@ module.exports.myFriends = (userId) => {
 module.exports.myRequest = (userId) => {
     const query = `(
         SELECT recipient_id FROM friendships
-        WHERE accepted = false AND sender_id = $1) UNION ALL (
+        WHERE accepted = false AND recipient_id = $1) UNION ALL (
         SELECT sender_id FROM friendships
         WHERE accepted = false AND recipient_id = $1)
         `;

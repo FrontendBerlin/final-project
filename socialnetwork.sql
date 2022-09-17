@@ -33,4 +33,4 @@ CREATE TABLE imageship (
     userId INT,
     url VARCHAR,
     likedPeople TEXT
-)
+);
