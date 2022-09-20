@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS imageship;
 CREATE TABLE users (
      id serial PRIMARY KEY,
      first VARCHAR NOT NULL CHECK (first != ''),
